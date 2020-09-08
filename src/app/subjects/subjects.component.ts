@@ -17,10 +17,10 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   subjectSubscriber2TimeStamp: Date;
   subjectSubscriber3TimeStamp: Date;
   subjectSubscriber4TimeStamp: Date;
-  subjectSubscriber1Data: Data;
-  subjectSubscriber2Data: Data;
-  subjectSubscriber3Data: Data;
-  subjectSubscriber4Data: Data;
+  subjectSubscriber1Data: Data[] = [];
+  subjectSubscriber2Data: Data[] = [];
+  subjectSubscriber3Data: Data[] = [];
+  subjectSubscriber4Data: Data[] = [];
 
   behaviorSubjectSubscriber1: Subscription;
   behaviorSubjectSubscriber2: Subscription;
@@ -30,10 +30,36 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   behaviorSubjectSubscriber2TimeStamp: Date;
   behaviorSubjectSubscriber3TimeStamp: Date;
   behaviorSubjectSubscriber4TimeStamp: Date;
-  behaviorSubjectSubscriber1Data: Data;
-  behaviorSubjectSubscriber2Data: Data;
-  behaviorSubjectSubscriber3Data: Data;
-  behaviorSubjectSubscriber4Data: Data;
+  behaviorSubjectSubscriber1Data: Data[] = [];
+  behaviorSubjectSubscriber2Data: Data[] = [];
+  behaviorSubjectSubscriber3Data: Data[] = [];
+  behaviorSubjectSubscriber4Data: Data[] = [];
+
+  replaySubjectSubscriber1: Subscription;
+  replaySubjectSubscriber2: Subscription;
+  replaySubjectSubscriber3: Subscription;
+  replaySubjectSubscriber4: Subscription;
+  replaySubjectSubscriber1TimeStamp: Date;
+  replaySubjectSubscriber2TimeStamp: Date;
+  replaySubjectSubscriber3TimeStamp: Date;
+  replaySubjectSubscriber4TimeStamp: Date;
+  replaySubjectSubscriber1Data: Data[] = [];
+  replaySubjectSubscriber2Data: Data[] = [];
+  replaySubjectSubscriber3Data: Data[] = [];
+  replaySubjectSubscriber4Data: Data[] = [];
+
+  asyncSubjectSubscriber1: Subscription;
+  asyncSubjectSubscriber2: Subscription;
+  asyncSubjectSubscriber3: Subscription;
+  asyncSubjectSubscriber4: Subscription;
+  asyncSubjectSubscriber1TimeStamp: Date;
+  asyncSubjectSubscriber2TimeStamp: Date;
+  asyncSubjectSubscriber3TimeStamp: Date;
+  asyncSubjectSubscriber4TimeStamp: Date;
+  asyncSubjectSubscriber1Data: Data[] = [];
+  asyncSubjectSubscriber2Data: Data[] = [];
+  asyncSubjectSubscriber3Data: Data[] = [];
+  asyncSubjectSubscriber4Data: Data[] = [];
 
   subsink = new SubSink();
 
@@ -69,17 +95,35 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   }
 
   startReplaySubject(): void {
-    
+    this.subjectService.initReplaySubject();
+    this.runReplaySubjectSubscriber1();
+    this.subjectService.startReplaySubjectValue();
+    this.runReplaySubjectSubscriber2();
+    this.runReplaySubjectSubscriber3();
+    this.runReplaySubjectSubscriber4();
+    this.subsink.add(this.replaySubjectSubscriber1);
+    this.subsink.add(this.replaySubjectSubscriber2);
+    this.subsink.add(this.replaySubjectSubscriber3);
+    this.subsink.add(this.replaySubjectSubscriber4);
   }
 
   startAsyncSubject(): void {
-    
+    this.subjectService.initAsyncSubject();
+    this.runAsyncSubjectSubscriber1();
+    this.subjectService.startAsyncSubjectValue();
+    this.runAsyncSubjectSubscriber2();
+    this.runAsyncSubjectSubscriber3();
+    this.runAsyncSubjectSubscriber4();
+    this.subsink.add(this.asyncSubjectSubscriber1);
+    this.subsink.add(this.asyncSubjectSubscriber2);
+    this.subsink.add(this.asyncSubjectSubscriber3);
+    this.subsink.add(this.asyncSubjectSubscriber4);
   }
 
   private runSubjectSubscriber1(): void {
     this.subjectSubscriber1TimeStamp = new Date();
     this.subjectSubscriber1 = this.subjectService.subjectObservable$.subscribe(value => {
-      this.subjectSubscriber1Data = value;
+      this.subjectSubscriber1Data.push(value);
     });
   }
 
@@ -87,7 +131,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.subjectSubscriber2TimeStamp = new Date();
       this.subjectSubscriber2 = this.subjectService.subjectObservable$.subscribe(value => {
-        this.subjectSubscriber2Data = value;
+        this.subjectSubscriber2Data.push(value);
       });
     }, 10000);
   }
@@ -96,7 +140,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.subjectSubscriber3TimeStamp = new Date();
       this.subjectSubscriber3 = this.subjectService.subjectObservable$.subscribe(value => {
-        this.subjectSubscriber3Data = value;
+        this.subjectSubscriber3Data.push(value);
       });
     }, 20000);
   }
@@ -105,7 +149,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.subjectSubscriber4TimeStamp = new Date();
       this.subjectSubscriber4 = this.subjectService.subjectObservable$.subscribe(value => {
-        this.subjectSubscriber4Data = value;
+        this.subjectSubscriber4Data.push(value);
       });
     }, 30000);
   }
@@ -113,7 +157,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   private runBehaiorSubjectSubscriber1(): void {
     this.behaviorSubjectSubscriber1TimeStamp = new Date();
     this.behaviorSubjectSubscriber1 = this.subjectService.behaviorSubjectObservable$.subscribe(value => {
-      this.behaviorSubjectSubscriber1Data = value;
+      this.behaviorSubjectSubscriber1Data.push(value);
     });
   }
 
@@ -121,7 +165,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.behaviorSubjectSubscriber2TimeStamp = new Date();
       this.behaviorSubjectSubscriber2 = this.subjectService.behaviorSubjectObservable$.subscribe(value => {
-        this.behaviorSubjectSubscriber2Data = value;
+        this.behaviorSubjectSubscriber2Data.push(value);
       });
     }, 10000);
   }
@@ -130,7 +174,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.behaviorSubjectSubscriber3TimeStamp = new Date();
       this.behaviorSubjectSubscriber3 = this.subjectService.behaviorSubjectObservable$.subscribe(value => {
-        this.behaviorSubjectSubscriber3Data = value;
+        this.behaviorSubjectSubscriber3Data.push(value);
       });
     }, 20000);
   }
@@ -139,7 +183,75 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.behaviorSubjectSubscriber4TimeStamp = new Date();
       this.behaviorSubjectSubscriber4 = this.subjectService.behaviorSubjectObservable$.subscribe(value => {
-        this.behaviorSubjectSubscriber4Data = value;
+        this.behaviorSubjectSubscriber4Data.push(value);
+      });
+    }, 30000);
+  }
+
+  private runReplaySubjectSubscriber1(): void {
+    this.replaySubjectSubscriber1TimeStamp = new Date();
+    this.replaySubjectSubscriber1 = this.subjectService.replaySubjectObservable$.subscribe(value => {
+      this.replaySubjectSubscriber1Data.push(value);
+    });
+  }
+
+  private runReplaySubjectSubscriber2(): void {
+    setTimeout(() => {
+      this.replaySubjectSubscriber2TimeStamp = new Date();
+      this.replaySubjectSubscriber2 = this.subjectService.replaySubjectObservable$.subscribe(value => {
+        this.replaySubjectSubscriber2Data.push(value);
+      });
+    }, 10000);
+  }
+
+  private runReplaySubjectSubscriber3(): void {
+    setTimeout(() => {
+      this.replaySubjectSubscriber3TimeStamp = new Date();
+      this.replaySubjectSubscriber3 = this.subjectService.replaySubjectObservable$.subscribe(value => {
+        this.replaySubjectSubscriber3Data.push(value);
+      });
+    }, 20000);
+  }
+
+  private runReplaySubjectSubscriber4(): void {
+    setTimeout(() => {
+      this.replaySubjectSubscriber4TimeStamp = new Date();
+      this.replaySubjectSubscriber4 = this.subjectService.replaySubjectObservable$.subscribe(value => {
+        this.replaySubjectSubscriber4Data.push(value);
+      });
+    }, 30000);
+  }
+
+  private runAsyncSubjectSubscriber1(): void {
+    this.asyncSubjectSubscriber1TimeStamp = new Date();
+    this.asyncSubjectSubscriber1 = this.subjectService.asyncSubjectObservable$.subscribe(value => {
+      this.asyncSubjectSubscriber1Data.push(value);
+    });
+  }
+
+  private runAsyncSubjectSubscriber2(): void {
+    setTimeout(() => {
+      this.asyncSubjectSubscriber2TimeStamp = new Date();
+      this.asyncSubjectSubscriber2 = this.subjectService.asyncSubjectObservable$.subscribe(value => {
+        this.asyncSubjectSubscriber2Data.push(value);
+      });
+    }, 10000);
+  }
+
+  private runAsyncSubjectSubscriber3(): void {
+    setTimeout(() => {
+      this.asyncSubjectSubscriber3TimeStamp = new Date();
+      this.asyncSubjectSubscriber3 = this.subjectService.asyncSubjectObservable$.subscribe(value => {
+        this.asyncSubjectSubscriber3Data.push(value);
+      });
+    }, 20000);
+  }
+
+  private runAsyncSubjectSubscriber4(): void {
+    setTimeout(() => {
+      this.asyncSubjectSubscriber4TimeStamp = new Date();
+      this.asyncSubjectSubscriber4 = this.subjectService.asyncSubjectObservable$.subscribe(value => {
+        this.asyncSubjectSubscriber4Data.push(value);
       });
     }, 30000);
   }

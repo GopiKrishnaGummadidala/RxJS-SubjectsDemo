@@ -6,45 +6,125 @@
 <br />
 
 <div class="row col-md-12">
-  <div class="col-md-6">
+  <div class="col-md-3">
     <h4>Subject</h4>
     <button (click)="startSubject()">Start Subject</button>
     <ul>
-      <li> Subscriber1 at {{subjectSubscriber1TimeStamp | date:'mediumTime'}} => <span *ngIf="subjectSubscriber1Data"> {{ subjectSubscriber1Data?.value }} emitted at {{ subjectSubscriber1Data?.Time | date:'mediumTime' }}</span></li>
-      <li> Subscriber2 at {{subjectSubscriber2TimeStamp | date:'mediumTime'}} => <span *ngIf="subjectSubscriber2Data"> {{ subjectSubscriber2Data?.value }} emitted at {{ subjectSubscriber2Data?.Time | date:'mediumTime' }}</span> </li>
-      <li> Subscriber3 at {{subjectSubscriber3TimeStamp | date:'mediumTime'}} => <span *ngIf="subjectSubscriber3Data"> {{ subjectSubscriber3Data?.value }} emitted at {{ subjectSubscriber3Data?.Time | date:'mediumTime' }}</span></li>
-      <li> Subscriber4 at {{subjectSubscriber4TimeStamp | date:'mediumTime'}} => <span *ngIf="subjectSubscriber4Data"> {{ subjectSubscriber4Data?.value }} emitted at {{ subjectSubscriber4Data?.Time | date:'mediumTime' }}</span></li>
+      <li> Subscriber1 at {{subjectSubscriber1TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of subjectSubscriber1Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber2 at {{subjectSubscriber2TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of subjectSubscriber2Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber3 at {{subjectSubscriber3TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of subjectSubscriber3Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber4 at {{subjectSubscriber4TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of subjectSubscriber4Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
     </ul>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
     <h4>Behavior Subject</h4>
     <button (click)="startBehaviorSubject()">Start BehaviorSubject</button>
     <ul>
-      <li> Subscriber1 at {{behaviorSubjectSubscriber1TimeStamp | date:'mediumTime'}} => <span *ngIf="behaviorSubjectSubscriber1Data"> {{ behaviorSubjectSubscriber1Data?.value }} emitted at {{ behaviorSubjectSubscriber1Data?.Time | date:'mediumTime' }}</span></li>
-      <li> Subscriber2 at {{behaviorSubjectSubscriber2TimeStamp | date:'mediumTime'}} => <span *ngIf="behaviorSubjectSubscriber2Data"> {{ behaviorSubjectSubscriber2Data?.value }} emitted at {{ behaviorSubjectSubscriber2Data?.Time | date:'mediumTime' }}</span> </li>
-      <li> Subscriber3 at {{behaviorSubjectSubscriber3TimeStamp | date:'mediumTime'}} => <span *ngIf="behaviorSubjectSubscriber3Data"> {{ behaviorSubjectSubscriber3Data?.value }} emitted at {{ behaviorSubjectSubscriber3Data?.Time | date:'mediumTime' }}</span></li>
-      <li> Subscriber4 at {{behaviorSubjectSubscriber4TimeStamp | date:'mediumTime'}} => <span *ngIf="behaviorSubjectSubscriber4Data"> {{ behaviorSubjectSubscriber4Data?.value }} emitted at {{ behaviorSubjectSubscriber4Data?.Time | date:'mediumTime' }}</span></li>
+      <li> Subscriber1 at {{behaviorSubjectSubscriber1TimeStamp | date:'mediumTime'}} => </li>
+        <ul>
+          <li *ngFor="let data of behaviorSubjectSubscriber1Data">
+            <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+          </li>
+        </ul>
+      <li> Subscriber2 at {{behaviorSubjectSubscriber2TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of behaviorSubjectSubscriber2Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber3 at {{behaviorSubjectSubscriber3TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of behaviorSubjectSubscriber3Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber4 at {{behaviorSubjectSubscriber4TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of behaviorSubjectSubscriber4Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    <h4>Replay Subject</h4>
+    <button (click)="startReplaySubject()">Start ReplaySubject</button>
+    <ul>
+      <li> Subscriber1 at {{replaySubjectSubscriber1TimeStamp | date:'mediumTime'}} => </li>
+        <ul>
+          <li *ngFor="let data of replaySubjectSubscriber1Data">
+            <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+          </li>
+        </ul>
+      <li> Subscriber2 at {{replaySubjectSubscriber2TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of replaySubjectSubscriber2Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber3 at {{replaySubjectSubscriber3TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of replaySubjectSubscriber3Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber4 at {{replaySubjectSubscriber4TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of replaySubjectSubscriber4Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    <h4>Async Subject</h4>
+    <button (click)="startAsyncSubject()">Start AsyncSubject</button>
+    <ul>
+      <li> Subscriber1 at {{ asyncSubjectSubscriber1TimeStamp | date:'mediumTime'}} => </li>
+        <ul>
+          <li *ngFor="let data of asyncSubjectSubscriber1Data">
+            <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+          </li>
+        </ul>
+      <li> Subscriber2 at {{ asyncSubjectSubscriber2TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of asyncSubjectSubscriber2Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber3 at {{ asyncSubjectSubscriber3TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of asyncSubjectSubscriber3Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
+      <li> Subscriber4 at {{ asyncSubjectSubscriber4TimeStamp | date:'mediumTime'}} => </li>
+      <ul>
+        <li *ngFor="let data of asyncSubjectSubscriber4Data">
+          <span> {{ data?.value }} emitted at {{ data?.Time | date:'mediumTime' }}</span>
+        </li>
+      </ul>
     </ul>
   </div>
 </div>
 
-<div class="row col-md-12">
-  <div class="col-md-6">
-    <h4>Replay Subject</h4>
-    <button (click)="startReplaySubject()">Start ReplaySubject</button>
-    <!-- <ul>
-      <li> Subscriber1 at {{subjectSubscriber1TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber1Data }}</li>
-      <li> Subscriber2 at {{subjectSubscriber2TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber2Data }}</li>
-      <li> Subscriber3 at {{subjectSubscriber3TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber3Data }}</li>
-    </ul> -->
-  </div>
-  <div class="col-md-6">
-    <h4>Async Subject</h4>
-    <button (click)="startAsyncSubject()">Start AsyncSubject</button>
-    <!-- <ul>
-      <li> Subscriber1 at {{subjectSubscriber1TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber1Data }}</li>
-      <li> Subscriber2 at {{subjectSubscriber2TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber2Data }}</li>
-      <li> Subscriber3 at {{subjectSubscriber3TimeStamp | date:'mediumTime'}} => {{ subjectSubscriber3Data }}</li>
-    </ul> -->
-  </div>
-</div>
